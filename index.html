@@ -715,7 +715,7 @@ $("oficina-zap").href = wa("Olá! Gostaria de um orçamento para a oficina.");
 
 $("tiles").innerHTML = SECOES.map(sec => {
   const g = PRODUTOS.filter(p => p.secao === sec), tipos = [...new Set(g.map(p => p.tipo))];
-  return `<button class="tile" data-sec="${esc(sec)}"><b>${esc(sec)}</b><span>${g.length.toLocaleString("pt-BR")} ${g.length === 1 ? "item" : "itens"}</span><small>${esc(tipos.slice(0, 4).join(" · ") + (tipos.length > 4 ? " · …" : ""))}</small></button>`;
+  return `<button class="tile" data-sec="${esc(sec)}"><b>${esc(sec)}</b><small>${esc(tipos.slice(0, 4).join(" · ") + (tipos.length > 4 ? " · …" : ""))}</small></button>`;
 }).join("");
 
 desenharMenu();
