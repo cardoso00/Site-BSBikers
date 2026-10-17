@@ -499,24 +499,7 @@ const FOTOS_DESTAQUE = {
   "Casaco de Ciclismo Caloi Black": "https://www.avancinibikes.com.br/cdn/shop/files/corta_vento_caloi_black_1141_2_16f543d9d89cacefa6e703c9c40e66a4.webp?v=1756304544",
   "Meia Caloi": "https://images.tcdn.com.br/img/img_prod/1023283/meia_caloi_xteme_cool_cano_mdio_preta_total_2_20250905135648_670123ea3450.jpg",
 
-  // Serviços de oficina: imagens de referência para cada tipo de serviço
-  "Ajuste de desviador": "https://craftmtn.com/sites/freehub/files/styles/halfscreen/public/articles/photos/fb%20hub%20edit_-3.jpg",
-  "Ajuste de engrenagens": "https://images.unsplash.com/photo-1676531443468-0e2b5a57e48f?auto=format&fit=crop&w=900&q=80",
-  "Ajuste de freio": "https://cdn.shopify.com/s/files/1/2318/5263/files/DSC04553_2048x2048.jpg?v=1570130660",
-  "Ajustes de bicicletas": "https://www.moosebicycle.com/cdn/shop/files/a-man-working-in-a-bicycle-repair-shop-2025-04-03-05-07-05-utc.png?v=1747841616&width=1200",
-  "Alinhamento de pneus": "https://bluelug.com/images/global_top/DSC01725.jpg",
-  "Reparo de pneu/câmara": "https://images.unsplash.com/photo-1676531443468-0e2b5a57e48f?auto=format&fit=crop&w=900&q=80",
-  "Inspeção de segurança": "https://www.moosebicycle.com/cdn/shop/files/a-man-working-in-a-bicycle-repair-shop-2025-04-03-05-07-05-utc.png?v=1747841616&width=1200",
-  "Manutenção": "https://images.unsplash.com/photo-1676531443468-0e2b5a57e48f?auto=format&fit=crop&w=900&q=80",
-  "Manutenção de suspensão": "https://www.sefiles.net/merchant/5638/images/site/home-service-slimC.jpg?t=1583261459476",
-  "Montagem de bicicleta personalizada": "https://static.wixstatic.com/media/1a1ba2_58c2258c6a364ab8bba845518765062d~mv2.jpg/v1/fill/w_900%2Ch_850%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/1a1ba2_58c2258c6a364ab8bba845518765062d~mv2.jpg",
-  "Montagem e desmontagem de bicicletas": "https://static.wixstatic.com/media/1a1ba2_58c2258c6a364ab8bba845765062d~mv2.jpg/v1/fill/w_900%2Ch_850%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/1a1ba2_58c2258c6a364ab8bba845765062d~mv2.jpg",
-  "Lavagem de bicicletas": "https://images.unsplash.com/photo-1675798225744-174c0d8421a0?auto=format&fit=crop&w=900&q=80",
-  "Serviço de lubrificação": "https://sprint-rowery.pl/media/wysiwyg/lancuch-do-roweru-miejskiego2_1.jpg",
-  "Revisão de suspensão (ar e óleo, 150 horas)": "https://www.sefiles.net/merchant/5638/images/site/home-service-slimC.jpg?t=1583261459476",
-  "Revisão geral MTB/Speed/Gravel": "https://images.unsplash.com/photo-1676531443468-0e2b5a57e48f?auto=format&fit=crop&w=900&q=80",
-  "Revisão de suspensão (ar e óleo, 50 horas)": "https://www.sefiles.net/merchant/5638/images/site/home-service-slimC.jpg?t=1583261459476",
-  "Revisão de suspensão (mola e graxa)": "https://www.sefiles.net/merchant/5638/images/site/home-service-slimC.jpg?t=1583261459476"
+
 };
 const fotosDe = p => (p.fotos && p.fotos.length) ? p.fotos : p.imagem ? [p.imagem]
   : FOTOS_DESTAQUE[p.nome] ? [FOTOS_DESTAQUE[p.nome]]
@@ -541,7 +524,7 @@ function card(p) {
     : `<div class="preco">${p.aPartir ? "<small>a partir de</small>" : ""}${brl(p.preco)}</div>`;
   const tags = (p.tecnologias || []).map(t => `<span class="tag">${esc(t)}</span>`).join("");
   const f0 = fotosDe(p)[0];
-  const foto = `<a class="foto" href="#/produto/${p.id}" aria-label="Ver detalhes: ${esc(p.nome)}">${p.usada ? '<span class="badge">Usada</span>' : ""}${esc(p.categoria)}${f0 ? `<img src="${esc(f0)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.remove()">` : ""}</a>`;
+  const foto = p.servico ? "" : `<a class="foto" href="#/produto/${p.id}" aria-label="Ver detalhes: ${esc(p.nome)}">${p.usada ? '<span class="badge">Usada</span>' : ""}${esc(p.categoria)}${f0 ? `<img src="${esc(f0)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.remove()">` : ""}</a>`;
   return `<article class="card ${p.servico ? "servico" : ""}">${foto}
     <div class="info">
       <h3><a href="#/produto/${p.id}">${esc(p.nome)}</a></h3>
